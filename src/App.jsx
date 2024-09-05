@@ -13,7 +13,7 @@ import Header from './components/header'
 import ImageHeader from './components/imgHeader'
 import { TaskForwardInput } from './components/taskInput'
 import { useLocalStorage } from './useLocalStorage'
-
+import { Reorder } from 'framer-motion'
 
 
 
@@ -21,7 +21,6 @@ function App() {
 
   // Local Storage :
   const [darkMode, setDarkMode] = useLocalStorage('Dark Mode', true)
-
 
   // States :
   const [isFilter, setIsFilter] = useState(false)
@@ -37,8 +36,7 @@ function App() {
 
   // Refs :
   const inputRef = useRef()
-  const dragPerson = useRef(0)
-  const draggedOverPerson = useRef(0)
+
   
 
   let tasksList = isFilter ? completed(isCompleted) : array
@@ -55,14 +53,17 @@ function App() {
 
         <TaskForwardInput append={append} array={array} ref={inputRef} />
 
-        <div className='tasks text-gray-400 dark:text-black dark:shadow-black rounded-md rounded-bl-none rounded-br-none overflow-hidden'>
-
-          {tasksList.map((item, index) => <Task item={item} replace={replace} array={array} remove={remove} setArray={setArray} index={index} dragPerson={dragPerson} draggedOverPerson={draggedOverPerson} />)}
+        <Reorder.Group axis="y" values={tasksList} onReorder={isFilter ? () => array : setArray}>
+          <div className='tasks text-gray-400 dark:text-black dark:shadow-black rounded-md rounded-bl-none rounded-br-none overflow-hidden'>
+            {tasksList.map((item) => (
+              <Reorder.Item as='div' key={item.id} value={item}> 
+                <Task item={item} replace={replace} array={array} remove={remove}/>
+              </Reorder.Item>
+            ))}
+          </div>
+          <Filter isFilter={isFilter} array={array} setIsFilter={setIsFilter} completed={completed} clear={clear} filter={filter} setIsCompleted={setIsCompleted}/>
+        </Reorder.Group>
           
-        </div>
-
-        <Filter isFilter={isFilter} array={array} setIsFilter={setIsFilter} completed={completed} clear={clear} filter={filter} setIsCompleted={setIsCompleted}/>
-
       </div>
 
     </div>
