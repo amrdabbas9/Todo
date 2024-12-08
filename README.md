@@ -38,7 +38,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://todo-two-gamma-56.vercel.app/)
+- Live Site URL: [TODO](https://todo-two-gamma-56.vercel.app/)
 
 ## My process
 
