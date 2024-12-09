@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./ScreenShots/todo-light.jpeg)
-![](./ScreenShots/todo-dark.jpeg)
+![](ScreenShots/todo-light.png)
+![](ScreenShots/todo-dark.png)
 
 ### Links
 
